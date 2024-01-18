@@ -1,11 +1,11 @@
+// TODO delete this file
+// we are using standalone components, so I don't see any reason in mixing them with modules
+// you shouldn't have any module in this app
+// we are bootstrapping the app in the main.ts
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from './app.component';
-import { TraininglogComponent } from './traininglog/traininglog.component';
-
-
 
 @NgModule({
   declarations: [
@@ -13,7 +13,6 @@ import { TraininglogComponent } from './traininglog/traininglog.component';
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
   ],
 })
 export class AppModule { }
