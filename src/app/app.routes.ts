@@ -3,5 +3,5 @@ import { TrainingsDashboardComponent } from './trainings-dashboard/trainings-das
 
 export const routes: Routes = [
     { path: 'dashboard', component: TrainingsDashboardComponent },
-    { path: '', redirectTo: '', pathMatch: 'full' }
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
