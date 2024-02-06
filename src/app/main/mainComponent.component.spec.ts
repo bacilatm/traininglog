@@ -1,11 +1,11 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppNavComponent } from './app-nav.component';
+import { MainComponent } from './mainComponent.component';
 
 describe('AppNavComponent', () => {
-  let component: AppNavComponent;
-  let fixture: ComponentFixture<AppNavComponent>;
+  let component: MainComponent;
+  let fixture: ComponentFixture<MainComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('AppNavComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppNavComponent);
+    fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
