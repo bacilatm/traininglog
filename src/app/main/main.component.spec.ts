@@ -1,7 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MainComponent } from './mainComponent.component';
+import { MainComponent } from './main.component';
 
 describe('AppNavComponent', () => {
   let component: MainComponent;

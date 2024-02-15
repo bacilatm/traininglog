@@ -14,8 +14,8 @@ import { SideNavComponent } from '../sidenav-component/sidenav.component';
 
 @Component({
     selector: 'app-nav',
-    templateUrl: './mainComponent.component.html',
-    styleUrl: './mainComponent.component.scss',
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss',
     standalone: true,
     imports: [
         MatToolbarModule,
