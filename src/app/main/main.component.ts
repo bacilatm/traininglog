@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,8 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ToolbarComponent } from "../toolbar-component/toolbar.component";
-import { SideNavComponent } from '../sidenav-component/sidenav.component';
+import { ToolbarComponent } from "../main/toolbar/toolbar.component";
+import { SideNavComponent } from '../main/sidenav/sidenav.component';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'app-nav',
@@ -27,7 +28,8 @@ import { SideNavComponent } from '../sidenav-component/sidenav.component';
         RouterLink,
         RouterOutlet,
         ToolbarComponent,
-        SideNavComponent
+        SideNavComponent,
+        MatMenuModule
     ]
 })
 export class MainComponent {
@@ -38,4 +40,5 @@ export class MainComponent {
       map(result => result.matches),
       shareReplay()
     );
+  @ViewChild(MatMenuTrigger) addTrainingsMenu!: MatMenuTrigger;
 }
