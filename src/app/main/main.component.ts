@@ -1,17 +1,17 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { ToolbarComponent } from "../main/toolbar/toolbar.component";
-import { SideNavComponent } from '../main/sidenav/sidenav.component';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { ToolbarComponent } from "./toolbar/toolbar.component";
+import { SideNavComponent } from "./sidenav/sidenav.component";
 
 @Component({
     selector: 'app-nav',
@@ -33,12 +33,16 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
     ]
 })
 export class MainComponent {
+  @ViewChild(MatSidenav) matSidenav!: MatSidenav;
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result: BreakpointState) => result.matches),
       shareReplay()
     );
-  @ViewChild(MatMenuTrigger) addTrainingsMenu!: MatMenuTrigger;
+
+  toggle(): void {
+    this.matSidenav.toggle();
+  };
 }
