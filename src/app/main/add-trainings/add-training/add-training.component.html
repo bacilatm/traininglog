@@ -7,3 +7,34 @@
         <button mat-raised-button color="warn" (click)="cancelTraining()">Cancel Training</button>
     </mat-card-actions>
 </mat-card>
+<br>
+<div id="input-container">
+    <h2>Add Training</h2>
+    <table class="full-width" [cellSpacing]="0"><tr>
+        <td><mat-form-field class="form-field">
+            <mat-label>Exercise</mat-label>
+            <input matInput type="text" [(ngModel)]="exercise">
+            <button matSuffix mat-icon-button aria-label="Clear" *ngIf="exercise" (click)="exercise=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field></td>
+        <td><mat-form-field class="form-field">
+            <mat-label>Repetition</mat-label>
+            <input matInput type="text" [(ngModel)]="repetition">
+            <button matSuffix mat-icon-button aria-label="Clear" *ngIf="repetition" (click)="repetition=0">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field></td>
+        <td><mat-form-field class="form-field">
+            <mat-label>Weight</mat-label>
+            <input matInput type="text" [(ngModel)]="weight">
+            <button matSuffix mat-icon-button aria-label="Clear" *ngIf="weight" (click)="weight=0">
+                <mat-icon>close</mat-icon>
+            </button>
+            <!-- <button mat-raised-button color="primary">Add Exercise</button> -->
+        </mat-form-field></td>
+        <td class="button-column">
+            <button mat-raised-button color="primary">Add Exercise</button>
+        </td>
+        </tr></table>
+    </div>

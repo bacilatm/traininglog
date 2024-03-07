@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Subscription, interval } from 'rxjs';
 import { MatCardModule } from '@angular/material/card'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @Component({
@@ -12,6 +16,10 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    FormsModule,
+    MatIconModule,
   
   ],
   templateUrl: './add-training.component.html',
@@ -21,6 +29,9 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
   elapsedTime: number = 0;
   private subscription!: Subscription;
   isPaused: boolean = false;
+  exercise!: string;
+  repetition!: number;
+  weight!: number;
 
   constructor() {}
 
