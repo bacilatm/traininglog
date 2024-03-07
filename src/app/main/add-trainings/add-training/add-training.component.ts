@@ -25,23 +25,23 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
   constructor() {}
 
   ngOnInit(): void {
-    this.startChronometer();
+    this.startStopWatch();
   }
 
   ngOnDestroy(): void {
-    this.stopChronometer();
+    this.cancelTraining();
   }
 
-  startChronometer(): void{
+  startStopWatch(): void{
     this.subscription = interval(1000).subscribe(() => {
       ++this.elapsedTime;
     });
   }
 
-  pauseChronometer(event: MouseEvent): void {
+  pauseStopWatch(event: MouseEvent): void {
     if (this.isPaused) {
       this.isPaused = false;
-      this.startChronometer();
+      this.startStopWatch();
     } else {
       this.isPaused = true;
       if (this.subscription) {
@@ -50,7 +50,7 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
     }
   }
 
-  stopChronometer(): void {
+  cancelTraining(): void {
     this.subscription.unsubscribe();
     this.elapsedTime = 0;
   }

@@ -3,7 +3,7 @@
         <h2>Training Time: {{ formatTime(elapsedTime) }}</h2>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="pauseChronometer($event)">{{ isPaused ? 'Resume' : 'Pause' }}</button>
-        <button mat-raised-button color="warn" (click)="stopChronometer()">Stop</button>
+        <button mat-raised-button color="primary" (click)="pauseStopWatch($event)">{{ isPaused ? 'Resume' : 'Pause' }}</button>
+        <button mat-raised-button color="warn" (click)="cancelTraining()">Cancel Training</button>
     </mat-card-actions>
 </mat-card>
