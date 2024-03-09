@@ -5,33 +5,28 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 
 
 @Component({
-  selector: 'app-add-training',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    FormsModule,
-    MatIconModule,
-  
-  ],
-  templateUrl: './add-training.component.html',
-  styleUrl: './add-training.component.scss'
+    selector: 'app-add-training',
+    standalone: true,
+    templateUrl: './add-training.component.html',
+    styleUrl: './add-training.component.scss',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        MatIconModule,
+        AddExerciseComponent
+    ]
 })
 export class AddTrainingComponent implements OnInit, OnDestroy {
   elapsedTime: number = 0;
   private subscription!: Subscription;
   isPaused: boolean = false;
-  exercise!: string;
-  repetition!: number;
-  weight!: number;
+
 
   constructor() {}
 
