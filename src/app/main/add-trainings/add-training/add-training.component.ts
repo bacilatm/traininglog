@@ -27,9 +27,6 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   isPaused: boolean = false;
 
-
-  constructor() {}
-
   ngOnInit(): void {
     this.startStopWatch();
   }
