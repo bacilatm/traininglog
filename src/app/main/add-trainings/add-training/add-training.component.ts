@@ -3,26 +3,29 @@ import { CommonModule } from '@angular/common';
 import { Subscription, interval } from 'rxjs';
 import { MatCardModule } from '@angular/material/card'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 
 
 @Component({
-  selector: 'app-add-training',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-  
-  ],
-  templateUrl: './add-training.component.html',
-  styleUrl: './add-training.component.scss'
+    selector: 'app-add-training',
+    standalone: true,
+    templateUrl: './add-training.component.html',
+    styleUrl: './add-training.component.scss',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        FormsModule,
+        MatIconModule,
+        AddExerciseComponent
+    ]
 })
 export class AddTrainingComponent implements OnInit, OnDestroy {
   elapsedTime: number = 0;
   private subscription!: Subscription;
   isPaused: boolean = false;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.startStopWatch();
