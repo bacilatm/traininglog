@@ -5,6 +5,7 @@
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="pauseStopWatch($event)">{{ isPaused ? 'Resume' : 'Pause' }}</button>
         <button mat-raised-button color="warn" (click)="cancelTraining()">Cancel Training</button>
+        <button mat-raised-button color="green" (click)="cancelTraining()">Save Training</button>
     </mat-card-actions>
 </mat-card>
 <app-add-exercise></app-add-exercise>

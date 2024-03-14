@@ -1,4 +1,26 @@
-<form [formGroup]="exerciseForm">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="exercises.length > 0">
+    <ng-container matColumnDef="exercise">
+      <th mat-header-cell *matHeaderCellDef>Exercise</th>
+      <td mat-cell *matCellDef="let ex">{{ ex.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="set">
+      <th mat-header-cell *matHeaderCellDef>Set</th>
+      <td mat-cell *matCellDef="let ex">{{ ex.set }}</td>
+    </ng-container>
+    <ng-container matColumnDef="repetitions">
+      <th mat-header-cell *matHeaderCellDef>Repetitions</th>
+      <td mat-cell *matCellDef="let ex">{{ getRepetitions(ex) }}</td>
+    </ng-container>
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let ex">{{ getWeights(ex) }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['exercise', 'set', 'repetitions', 'weight']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['exercise', 'set', 'repetitions', 'weight'];"></tr>
+</table>
+  
+
+<form [formGroup]="exerciseForm" (ngSubmit)="submitForm()">
     <div class="form-row">
         <div class="form-group">
             <label for="exercise">Exercise</label>
@@ -6,11 +28,11 @@
         </div>
         <div class="form-group">
             <label for="repetitions">Repetitions</label>
-            <input id="repetitions" type="text" formControlName="repetitions">
+            <input id="repetitions" type="number" formControlName="repetitions">
         </div>
         <div class="form-group">
             <label for="weight">Weight</label>
-            <input id="weight" type="text" formControlName="weight">
+            <input id="weight" type="number" formControlName="weight">
         </div>
         <div class="form-group button">
             <button type="submit" mat-raised-button color="primary" [disabled]="!exerciseForm.valid">Add Exercise</button>

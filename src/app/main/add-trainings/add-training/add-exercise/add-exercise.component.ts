@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { Validators } from '@angular/forms';
+import { Exercise } from './exercises';
 
 @Component({
   selector: 'app-add-exercise',
@@ -15,15 +17,70 @@ import { Validators } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     CommonModule,
+    MatTableModule,
   ],
   templateUrl: './add-exercise.component.html',
   styleUrl: './add-exercise.component.scss'
 })
 
 export class AddExerciseComponent {
-  exerciseForm = new FormGroup({
-    exercise: new FormControl('', Validators.required),
-    repetitions: new FormControl('', Validators.required),
-    weight: new FormControl('', Validators.required),
-  });
+
+  exerciseForm: FormGroup;
+  exercises: Exercise[] = [];
+  dataSource: MatTableDataSource<Exercise>;
+  exerciseName: string[] = [];
+  newExercise!: Exercise;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.exerciseForm = this.formBuilder.group({
+      exercise: ['', Validators.required],
+      repetitions: ['', Validators.required],
+      weight: ['', Validators.required]
+    });
+    this.dataSource = new MatTableDataSource(this.exercises);
+  }
+
+  submitForm() {
+    if (this.exerciseForm.valid) {
+      const newExercise: Exercise = {
+        name: this.exerciseForm.get('exercise')!.value,
+        set: this.calculateSet(),
+        repetitions: [this.exerciseForm.get('repetitions')!.value],
+        weight: [this.exerciseForm.get('weight')!.value]
+      };
+      const index = this.isExistingExercise(newExercise.name);
+      if (index !== -1) {
+        const existingExercise = this.exercises[index];
+        existingExercise.set++;
+        existingExercise.repetitions.push(newExercise.repetitions[0]);
+        existingExercise.weight.push(newExercise.weight[0]);
+      } else {
+        this.exerciseName.push(newExercise.name);
+        this.exercises.push(newExercise);
+      }
+      this.dataSource.data = this.exercises;
+      this.exerciseForm.reset();
+    }
+  }
+
+  getRepetitions(exercise: Exercise): string {
+    return exercise.repetitions.join(', ');
+  }
+
+  getWeights(exercise: Exercise): string {
+    return exercise.weight.map((weight: number) => `${weight} kg`).join(', ');
+  }
+
+  isExistingExercise(name: string): number {
+    return this.exerciseName.indexOf(name);
+  }
+
+  calculateSet(): number {
+    if (this.newExercise) {
+      const index = this.isExistingExercise(this.newExercise.name);
+      return index > -1 ? ++this.exercises[index].set : 1;
+    }
+    return 1;
+  }
+
 }
