@@ -6,7 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { Validators } from '@angular/forms';
-import { Exercise } from './exercises';
+import { Exercise } from './exercise.model';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { tableHeaderRowDef } from './table.config';
 
 @Component({
   selector: 'app-add-exercise',
@@ -18,6 +22,9 @@ import { Exercise } from './exercises';
     MatIconModule,
     CommonModule,
     MatTableModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './add-exercise.component.html',
   styleUrl: './add-exercise.component.scss'
@@ -25,6 +32,7 @@ import { Exercise } from './exercises';
 
 export class AddExerciseComponent {
 
+  tableDef: string[] = tableHeaderRowDef;
   exerciseForm: FormGroup;
   exercises: Exercise[] = [];
   dataSource: MatTableDataSource<Exercise>;
