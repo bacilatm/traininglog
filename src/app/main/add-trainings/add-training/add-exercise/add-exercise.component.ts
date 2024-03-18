@@ -40,7 +40,7 @@ export class AddExerciseComponent {
     this.dataSource = new MatTableDataSource(this.exercises);
   }
 
-  submitForm() {
+  submitForm(): void {
     if (this.exerciseForm.valid) {
       const newExercise: Exercise = {
         name: this.exerciseForm.get('exercise')!.value,
@@ -48,8 +48,9 @@ export class AddExerciseComponent {
         repetitions: [this.exerciseForm.get('repetitions')!.value],
         weight: [this.exerciseForm.get('weight')!.value]
       };
-      const index = this.isExistingExercise(newExercise.name);
-      if (index !== -1) {
+      const isExercise = this.isExistingExercise(newExercise.name);
+      if (isExercise) {
+        const index = this.getExerciseIndex(newExercise.name);
         const existingExercise = this.exercises[index];
         existingExercise.set++;
         existingExercise.repetitions.push(newExercise.repetitions[0]);
@@ -71,13 +72,17 @@ export class AddExerciseComponent {
     return exercise.weight.map((weight: number) => `${weight} kg`).join(', ');
   }
 
-  isExistingExercise(name: string): number {
+  getExerciseIndex(name: string): number {
     return this.exerciseName.indexOf(name);
+  }
+
+  isExistingExercise(name: string): boolean {
+    return this.getExerciseIndex(name) > -1;
   }
 
   calculateSet(): number {
     if (this.newExercise) {
-      const index = this.isExistingExercise(this.newExercise.name);
+      const index = this.getExerciseIndex(this.newExercise.name);
       return index > -1 ? ++this.exercises[index].set : 1;
     }
     return 1;
