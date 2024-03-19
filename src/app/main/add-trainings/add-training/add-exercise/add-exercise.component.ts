@@ -10,6 +10,7 @@ import { Exercise } from './exercise.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { TrainingTableComponent } from '../../../training-table/training-table.component';
 import { tableHeaderRowDef } from './table.config';
 
 @Component({
@@ -25,6 +26,7 @@ import { tableHeaderRowDef } from './table.config';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    TrainingTableComponent,
   ],
   templateUrl: './add-exercise.component.html',
   styleUrl: './add-exercise.component.scss'
@@ -32,11 +34,11 @@ import { tableHeaderRowDef } from './table.config';
 
 export class AddExerciseComponent {
 
-  tableDef: string[] = tableHeaderRowDef;
   exerciseForm: FormGroup;
   exercises: Exercise[] = [];
-  dataSource: MatTableDataSource<Exercise>;
+  dataSource!: MatTableDataSource<Exercise>;
   exerciseName: string[] = [];
+  tableDef = tableHeaderRowDef;
   newExercise!: Exercise;
 
   constructor(private formBuilder: FormBuilder) {
@@ -67,17 +69,9 @@ export class AddExerciseComponent {
         this.exerciseName.push(newExercise.name);
         this.exercises.push(newExercise);
       }
-      this.dataSource.data = this.exercises;
+      this.dataSource = new MatTableDataSource(this.exercises);
       this.exerciseForm.reset();
     }
-  }
-
-  getRepetitions(exercise: Exercise): string {
-    return exercise.repetitions.join(', ');
-  }
-
-  getWeights(exercise: Exercise): string {
-    return exercise.weight.map((weight: number) => `${weight} kg`).join(', ');
   }
 
   getExerciseIndex(name: string): number {
