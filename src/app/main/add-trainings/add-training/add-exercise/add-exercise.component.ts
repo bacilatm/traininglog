@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { TrainingTableComponent } from '../../../training-table/training-table.component';
-import { tableHeaderRowDef } from './table.config';
 
 @Component({
   selector: 'app-add-exercise',
@@ -38,7 +37,6 @@ export class AddExerciseComponent {
   exercises: Exercise[] = [];
   dataSource!: MatTableDataSource<Exercise>;
   exerciseName: string[] = [];
-  tableDef = tableHeaderRowDef;
   newExercise!: Exercise;
 
   constructor(private formBuilder: FormBuilder) {
