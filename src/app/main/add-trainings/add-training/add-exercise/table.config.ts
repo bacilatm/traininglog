@@ -1,0 +1,1 @@
+export const tableHeaderRowDef: string[] = ['exercise', 'set', 'repetitions', 'weight'];

@@ -1,16 +1,18 @@
-<form [formGroup]="exerciseForm">
+<app-training-table [dataSource]="dataSource"></app-training-table>
+
+<form [formGroup]="exerciseForm" (ngSubmit)="submitForm()">
     <div class="form-row">
         <div class="form-group">
             <label for="exercise">Exercise</label>
-            <input id="exercise" type="text" formControlName="exercise">
+            <input matInput type="text"  id="exercise" formControlName="exercise">
         </div>
         <div class="form-group">
             <label for="repetitions">Repetitions</label>
-            <input id="repetitions" type="text" formControlName="repetitions">
+            <input matInput type="number" id="repetitions" formControlName="repetitions">
         </div>
         <div class="form-group">
             <label for="weight">Weight</label>
-            <input id="weight" type="text" formControlName="weight">
+            <input matInput type="number" id="weight"  formControlName="weight">
         </div>
         <div class="form-group button">
             <button type="submit" mat-raised-button color="primary" [disabled]="!exerciseForm.valid">Add Exercise</button>
