@@ -6,7 +6,6 @@ import {
   MatDialogTitle,
   MatDialogContent,} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-training',
@@ -23,12 +22,9 @@ import { Router } from '@angular/router';
 })
 export class DeleteTrainingComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<DeleteTrainingComponent>,
-    private router: Router) {}
+  constructor(public dialogRef: MatDialogRef<DeleteTrainingComponent>) {}
 
   cancelTraining(): void {
-    this.router.navigate(['/']);
     this.dialogRef.close(true);
   }
 

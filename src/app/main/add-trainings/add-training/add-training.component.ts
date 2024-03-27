@@ -30,6 +30,7 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
   elapsedTime: number = 0;
   private subscription!: Subscription;
   isPaused: boolean = false;
+  isDelete: boolean = false;
 
   constructor(private dialog: MatDialog, private router: Router) {
     
@@ -64,28 +65,33 @@ export class AddTrainingComponent implements OnInit, OnDestroy {
   }
 
   deleteTraining(): void {
+    if (this.isDelete) {
+      return;
+    }
+    this.isDelete = true;
     if (!this.isPaused) {
       this.pauseStopWatch();
     }
     const dialogRef = this.dialog.open(DeleteTrainingComponent);
     dialogRef.afterClosed().subscribe((result: boolean) => {
+      this.isDelete = true;
       if (!result) {
         this.isPaused = true;
         this.pauseStopWatch();
+        this.isDelete = false;
       } else {
-        this.dialog.closeAll();
-        this.router.navigate(['/']);
         this.subscription.unsubscribe();
         this.elapsedTime = 0;
+        dialogRef.close();
+        this.router.navigate(['/']);
       }
-    })
+    });
   }
 
   formatTime(seconds: number): string {
     const hours: number = Math.floor(seconds / 3600);
     const minutes: number = Math.floor((seconds % 3600) / 60);
     const secs: number = seconds % 60;
-
     return `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(secs)}`;
   }
 
