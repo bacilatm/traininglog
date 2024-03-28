@@ -3,9 +3,9 @@
         <h2>Training Time: {{ formatTime(elapsedTime) }}</h2>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="pauseStopWatch($event)">{{ isPaused ? 'Resume' : 'Pause' }}</button>
-        <button mat-raised-button color="warn" (click)="cancelTraining()">Cancel Training</button>
-        <button mat-raised-button color="green" (click)="cancelTraining()">Save Training</button>
+        <button mat-raised-button color="primary" (click)="pauseStopWatch()">{{ isPaused ? 'Resume' : 'Pause' }}</button>
+        <button mat-raised-button color="success">Save Training</button>
+        <button mat-raised-button color="warn" (click)="deleteTraining()">Delete Training</button>
     </mat-card-actions>
 </mat-card>
 <app-add-exercise></app-add-exercise>
